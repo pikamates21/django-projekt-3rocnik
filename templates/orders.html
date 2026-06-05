@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="page-header">
+        <h2>Objednávky</h2>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Zákazník</th>
+                    <th>Datum</th>
+                    <th>Popis</th>
+                    <th>Odhad ceny</th>
+                    <th>Váha</th>
+                    <th>Čas odhad</th>
+                    <th>Čas práce</th>
+                    <th>Finální cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                    <tr>
+                        <td>{{ o.customer.name }}</td>
+                        <td>{{ o.created_at }}</td>
+                        <td>{{ o.description }}</td>
+                        <td>{{ o.estimated_price }}</td>
+                        <td>{{ o.weight }}</td>
+                        <td>{{ o.time_estimate }}</td>
+                        <td>{{ o.work_time }}</td>
+                        <td>{{ o.final_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

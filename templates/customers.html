@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="page-header">
+        <h2>Zákazníci</h2>
+    </div>
+    <ul class="data-list">
+        {% for d in data %}
+            <li>
+                <strong>{{ d.customer.name }}</strong> — zakázek: {{ d.count }}, celkem: {{ d.total }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

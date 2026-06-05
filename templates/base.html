@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Systém objednávek</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --page-bg: #e9f5ff;
+            --panel-bg: #ffffff;
+            --accent: #ff8c42;
+            --accent-strong: #f05a28;
+            --text: #1a2d4d;
+            --muted: #5a6d82;
+            --border: rgba(26, 45, 77, 0.12);
+            --shadow: 0 20px 40px rgba(21, 57, 89, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #d9ecff 0%, #ffffff 100%);
+            color: var(--text);
+        }
+
+        .page-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 26px 28px;
+            margin-bottom: 24px;
+            background: rgba(255, 140, 66, 0.08);
+            border: 1px solid rgba(255, 140, 66, 0.16);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 3vw, 3rem);
+            letter-spacing: -0.04em;
+            font-weight: 800;
+        }
+
+        .brand p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(26, 45, 77, 0.08);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        nav a:hover,
+        .button:hover {
+            transform: translateY(-1px);
+            background: #fff4ed;
+            border-color: rgba(240, 90, 40, 0.24);
+        }
+
+        .content {
+            display: grid;
+            gap: 24px;
+        }
+
+        .card {
+            width: 100%;
+            padding: 28px;
+            border-radius: 28px;
+            background: var(--panel-bg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .page-header h2 {
+            margin: 0;
+            font-size: clamp(2rem, 2.6vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header h3,
+        h3 {
+            margin: 0;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #233659;
+        }
+
+        .button,
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 180ms ease, transform 180ms ease;
+        }
+
+        .button-secondary {
+            background: #f7f9ff;
+            color: var(--text);
+            border: 1px solid rgba(26, 45, 77, 0.1);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--text);
+        }
+
+        ul.data-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        ul.data-list li {
+            padding: 16px 18px;
+            border-radius: 18px;
+            background: #f6fbff;
+            border: 1px solid rgba(11, 91, 177, 0.08);
+            color: var(--text);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fdf8f3;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        table th,
+        table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(26, 45, 77, 0.08);
+            text-align: left;
+            font-size: 0.97rem;
+        }
+
+        table th {
+            background: rgba(255, 140, 66, 0.12);
+            color: var(--text);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            margin-top: 28px;
+            padding: 18px 20px;
+            border-radius: 20px;
+            background: rgba(255, 140, 66, 0.08);
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 760px) {
+            header,
+            .card,
+            footer {
+                padding: 18px;
+            }
+
+            table th,
+            table td {
+                padding: 12px 10px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header>
+            <div class="brand">
+                <h1>Systém objednávek</h1>
+                <p>Jednoduché rozhraní pro objednávky, zákazníky a statistiky</p>
+            </div>
+            <nav>
+                <a href="{% url 'index' %}">Domů</a>
+                <a href="{% url 'orders' %}">Objednávky</a>
+                <a href="{% url 'customers' %}">Zákazníci</a>
+                <a href="{% url 'stats' %}">Statistiky</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <p>© 2026 Systém objednávek • rychlý a přehledný design</p>
+        </footer>
+    </div>
+</body>
+</html>
