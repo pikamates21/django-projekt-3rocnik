@@ -19,16 +19,22 @@
                 </tr>
             </thead>
             <tbody>
-                {% for e in employees %}
+                {% if employees %}
+                    {% for e in employees %}
+                        <tr>
+                            <td>{{ e.name }}</td>
+                            <td>{{ e.employee_id }}</td>
+                            <td>{{ e.get_gender_display }}</td>
+                            <td>{{ e.start_date }}</td>
+                            <td>{{ e.birth_date|czech_date }}</td>
+                            <td>{{ e.rating }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
                     <tr>
-                        <td>{{ e.name }}</td>
-                        <td>{{ e.employee_id }}</td>
-                        <td>{{ e.get_gender_display }}</td>
-                        <td>{{ e.start_date }}</td>
-                        <td>{{ e.birth_date|czech_date }}</td>
-                        <td>{{ e.rating }}</td>
+                        <td colspan="6">Žádní pracovníci k zobrazení.</td>
                     </tr>
-                {% endfor %}
+                {% endif %}
             </tbody>
         </table>
     </div>

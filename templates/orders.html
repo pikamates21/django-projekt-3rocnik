@@ -24,7 +24,7 @@
                 {% for o in orders %}
                     <tr>
                         <td>{{ o.customer.name }}</td>
-                        <td>{{ o.worker.name if o.worker else "-" }}</td>
+                        <td>{% if o.worker %}{{ o.worker.name }}{% else %}-{% endif %}</td>
                         <td>{{ o.created_at }}</td>
                         <td>{{ o.description }}</td>
                         <td>{{ o.estimated_price }}</td>
