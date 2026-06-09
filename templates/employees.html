@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load cs_date %}
 
 {% block content %}
 <div class="card">
@@ -24,7 +25,7 @@
                         <td>{{ e.employee_id }}</td>
                         <td>{{ e.get_gender_display }}</td>
                         <td>{{ e.start_date }}</td>
-                        <td>{{ e.birth_date }}</td>
+                        <td>{{ e.birth_date|czech_date }}</td>
                         <td>{{ e.rating }}</td>
                     </tr>
                 {% endfor %}
