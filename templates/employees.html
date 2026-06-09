@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="page-header">
+        <h2>Pracovníci</h2>
+    </div>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Jméno</th>
+                    <th>ID</th>
+                    <th>Pohlaví</th>
+                    <th>Začal pracovat</th>
+                    <th>Datum narození</th>
+                    <th>Hodnocení</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in employees %}
+                    <tr>
+                        <td>{{ e.name }}</td>
+                        <td>{{ e.employee_id }}</td>
+                        <td>{{ e.get_gender_display }}</td>
+                        <td>{{ e.start_date }}</td>
+                        <td>{{ e.birth_date }}</td>
+                        <td>{{ e.rating }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

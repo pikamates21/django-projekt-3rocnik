@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Customer, Order
-from django.db.models import Sum, Avg
+from .models import Customer, Employee, Order
+from django.db.models import Avg, Sum
 
 
 def index(request):
@@ -8,7 +8,7 @@ def index(request):
 
 
 def orders(request):
-    orders = Order.objects.select_related("customer")
+    orders = Order.objects.select_related("customer", "worker")
     return render(request, "orders.html", {"orders": orders})
 
 
@@ -25,6 +25,11 @@ def customers(request):
         })
 
     return render(request, "customers.html", {"data": data})
+
+
+def employees(request):
+    employees = Employee.objects.all()
+    return render(request, "employees.html", {"employees": employees})
 
 
 def stats(request):

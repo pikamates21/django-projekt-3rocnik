@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>Zákazník</th>
+                    <th>Pracovník</th>
                     <th>Datum</th>
                     <th>Popis</th>
                     <th>Odhad ceny</th>
@@ -23,6 +24,7 @@
                 {% for o in orders %}
                     <tr>
                         <td>{{ o.customer.name }}</td>
+                        <td>{{ o.worker.name if o.worker else "-" }}</td>
                         <td>{{ o.created_at }}</td>
                         <td>{{ o.description }}</td>
                         <td>{{ o.estimated_price }}</td>
