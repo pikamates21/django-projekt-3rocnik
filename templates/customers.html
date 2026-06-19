@@ -7,8 +7,19 @@
     </div>
     <ul class="data-list">
         {% for d in data %}
-            <li>
-                <strong>{{ d.customer.name }}</strong> — zakázek: {{ d.count }}, celkem: {{ d.total }}
+            <li style="display:flex;align-items:center;gap:12px;">
+                <div style="width:56px;height:56px;flex:0 0 56px;">
+                    {% if d.customer.photo %}
+                        <img src="{{ d.customer.photo_path }}" alt="{{ d.customer.name }}" style="width:56px;height:56px;border-radius:8px;object-fit:cover;" />
+                    {% else %}
+                        <div style="width:56px;height:56px;border-radius:8px;background:#f0f0f0;
+                                    display:flex;align-items:center;justify-content:center;color:#888;">?</div>
+                    {% endif %}
+                </div>
+                <div>
+                    <strong><a href="{% url 'customer_detail' d.customer.id %}">{{ d.customer.name }}</a></strong>
+                    <div style="font-size:0.95rem;color:#556;">zakázek: {{ d.count }} — celkem: {{ d.total }} Kč</div>
+                </div>
             </li>
         {% endfor %}
     </ul>

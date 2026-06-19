@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <div class="page-header">
+        <h2>Profil zákazníka</h2>
+    </div>
+    <div style="display:flex;gap:20px;align-items:flex-start;">
+        <div style="min-width:220px;">
+            {% if customer.photo %}
+                <img src="{{ customer.photo_path }}" alt="{{ customer.name }}" style="max-width:220px;border-radius:12px;"/>
+            {% endif %}
+        </div>
+        <div>
+            <h3>{{ customer.name }}</h3>
+            <p><strong>ID:</strong> {{ customer.id }}</p>
+            <p><strong>Počet objednávek:</strong> {{ order_count }}</p>
+            <p><strong>Email:</strong> {{ customer.email }}</p>
+            <p><strong>Telefon:</strong> {{ customer.phone }}</p>
+            <p><strong>Datum narození:</strong> {{ customer.birth_date }}</p>
+            <p><strong>Registrován:</strong> {{ customer.registered_at }}</p>
+            <p><strong>Bilance:</strong> {{ customer.balance }} Kč</p>
+        </div>
+    </div>
+
+    <hr style="margin:18px 0;"/>
+
+    <h3>Objednávky zákazníka</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Datum</th>
+                    <th>Popis</th>
+                    <th>Finální cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in orders %}
+                    <tr>
+                        <td>{{ o.id }}</td>
+                        <td>{{ o.created_at }}</td>
+                        <td>{{ o.description }}</td>
+                        <td>{{ o.final_price }} Kč</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="4">Žádné objednávky</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

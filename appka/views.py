@@ -27,6 +27,19 @@ def customers(request):
     return render(request, "customers.html", {"data": data})
 
 
+def customer_detail(request, pk):
+    c = Customer.objects.filter(pk=pk).first()
+    if not c:
+        return render(request, "customers.html", {"data": []})
+
+    orders = c.order_set.all()
+    return render(request, "customer_detail.html", {
+        "customer": c,
+        "orders": orders,
+        "order_count": orders.count(),
+    })
+
+
 def employees(request):
     employees = Employee.objects.all()
     return render(request, "employees.html", {"employees": employees})

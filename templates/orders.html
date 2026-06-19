@@ -13,25 +13,25 @@
                     <th>Pracovník</th>
                     <th>Datum</th>
                     <th>Popis</th>
-                    <th>Odhad ceny</th>
-                    <th>Váha</th>
-                    <th>Čas odhad</th>
-                    <th>Čas práce</th>
-                    <th>Finální cena</th>
+                    <th>Odhad ceny (Kč)</th>
+                    <th>Váha (kg)</th>
+                    <th>Čas odhad (h)</th>
+                    <th>Čas práce (h)</th>
+                    <th>Finální cena (Kč)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for o in orders %}
                     <tr>
-                        <td>{{ o.customer.name }}</td>
+                        <td><a href="{% url 'customer_detail' o.customer.id %}">{{ o.customer.name }}</a></td>
                         <td>{% if o.worker %}{{ o.worker.name }}{% else %}-{% endif %}</td>
                         <td>{{ o.created_at }}</td>
                         <td>{{ o.description }}</td>
-                        <td>{{ o.estimated_price }}</td>
+                        <td>{{ o.estimated_price }} Kč</td>
                         <td>{{ o.weight }}</td>
-                        <td>{{ o.time_estimate }}</td>
-                        <td>{{ o.work_time }}</td>
-                        <td>{{ o.final_price }}</td>
+                        <td>{{ o.time_estimate }} h</td>
+                        <td>{{ o.work_time }} h</td>
+                        <td>{{ o.final_price }} Kč</td>
                     </tr>
                 {% endfor %}
             </tbody>

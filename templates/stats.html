@@ -8,21 +8,21 @@
     <div class="stats-list">
         <h3>Obecné přehledy</h3>
         <p><strong>Celkem objednávek:</strong> {{ total_orders }}</p>
-        <p><strong>Celkem utraceno:</strong> {{ total_spent }}</p>
-        <p><strong>Průměrná cena zakázky:</strong> {{ avg_price }}</p>
+        <p><strong>Celkem utraceno:</strong> {{ total_spent }} Kč</p>
+        <p><strong>Průměrná cena zakázky:</strong> {{ avg_price }} Kč</p>
     </div>
     <div class="stats-list">
         <h3>Váhové ukazatele</h3>
-        <p><strong>Celková váha všech zakázek:</strong> {{ total_weight }}</p>
-        <p><strong>Průměrná váha zakázky:</strong> {{ avg_weight }}</p>
+        <p><strong>Celková váha všech zakázek:</strong> {{ total_weight }} kg</p>
+        <p><strong>Průměrná váha zakázky:</strong> {{ avg_weight }} kg</p>
     </div>
     <div class="stats-list">
         <h3>Nejčastější zákazník</h3>
         {% if frequent_customer %}
             <p><strong>Jméno:</strong> {{ frequent_customer.name }}</p>
             <p><strong>Počet zakázek:</strong> {{ frequent_count }}</p>
-            <p><strong>Celková hodnota jeho zakázek:</strong> {{ frequent_total }}</p>
-            <p><strong>Průměrná váha zakázky:</strong> {{ frequent_avg_weight }}</p>
+            <p><strong>Celková hodnota jeho zakázek:</strong> {{ frequent_total }} Kč</p>
+            <p><strong>Průměrná váha zakázky:</strong> {{ frequent_avg_weight }} kg</p>
         {% else %}
             <p>Žádná data o zákaznících nejsou dostupná.</p>
         {% endif %}
