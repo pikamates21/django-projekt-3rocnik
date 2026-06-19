@@ -2,6 +2,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from django.db import models
 import datetime
+import os
 
 
 class Customer(models.Model):
@@ -34,10 +35,20 @@ class Customer(models.Model):
 
     def photo_path(self):
         # keep helper for compatibility: use media URL when available
-        try:
-            return self.photo.url
-        except Exception:
-            return ""
+        if self.photo and hasattr(self.photo, 'url'):
+            try:
+                return self.photo.url
+            except Exception:
+                return ""
+        return ""
+
+    def save(self, *args, **kwargs):
+        # If a photo file is attached but not yet persisted in the ImageField name,
+        # ensure it is saved and stored in the database record.
+        if self.photo and self.photo.file and not self.photo.name:
+            filename = os.path.basename(self.photo.file.name)
+            self.photo.save(filename, self.photo.file, save=False)
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = "Zákazník"

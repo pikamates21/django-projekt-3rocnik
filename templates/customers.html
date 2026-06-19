@@ -8,9 +8,9 @@
     <ul class="data-list">
         {% for d in data %}
             <li style="display:flex;align-items:center;gap:12px;">
-                <div style="width:56px;height:56px;flex:0 0 56px;">
+                <div style="width:56px;height:56px;flex:0 0 56px;overflow:hidden;border-radius:8px;">
                     {% if d.customer.photo %}
-                        <img src="{{ d.customer.photo_path }}" alt="{{ d.customer.name }}" style="width:56px;height:56px;border-radius:8px;object-fit:cover;" />
+                        <img src="{{ d.customer.photo_path }}" alt="{{ d.customer.name }}" style="width:100%;height:100%;object-fit:fill;display:block;" />
                     {% else %}
                         <div style="width:56px;height:56px;border-radius:8px;background:#f0f0f0;
                                     display:flex;align-items:center;justify-content:center;color:#888;">?</div>
